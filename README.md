@@ -119,6 +119,11 @@ If you prefer not to copy `WebApplicationInterface-1.0.jar` to the Burp Suite di
 ## Contributing
 If you'd like to contribute, feel free to submit a pull request or open an issue for bug reports and suggestions.
 
+## Video Demonstration
+You can watch a video demonstration of how to use CollaboratorFetcher.
+
+https://youtu.be/Rc_pOd2L-Xg
+
 ## Contact
 For feedback or issues, please reach out via **ma4747gh@gmail.com** or submit an issue on GitHub.
 
