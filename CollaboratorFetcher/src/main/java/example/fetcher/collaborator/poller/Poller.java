@@ -33,8 +33,10 @@ public class Poller {
     }
 
     public void shutdown() {
-        schedule.cancel(true);
-        scheduledThreadPoolExecutor.shutdown();
+        if (schedule != null) {
+            schedule.cancel(true);
+            scheduledThreadPoolExecutor.shutdown();
+        }
     }
 
     private class PollingRunnable implements Runnable {

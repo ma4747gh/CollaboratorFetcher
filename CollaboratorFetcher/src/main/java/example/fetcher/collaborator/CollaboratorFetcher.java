@@ -42,13 +42,8 @@ public class CollaboratorFetcher implements BurpExtension {
 
         CollaboratorClient collaboratorClient = createCollaboratorClient(api.persistence().extensionData());
 
-        String numberOfPayloads = getNumberOfPayloads();
-
-        generatePayloads(collaboratorClient, Integer.parseInt(numberOfPayloads));
-
         Poller collaboratorPoller = new Poller(collaboratorClient, Duration.ofSeconds(10));
         collaboratorPoller.registerInteractionHandler(new MyInteractionHandler(api));
-        collaboratorPoller.start();
 
         api.extension().registerUnloadingHandler(() -> {
             if (webApplicationInterfaceProcess != null && webApplicationInterfaceProcess.isAlive()) {
@@ -57,6 +52,12 @@ public class CollaboratorFetcher implements BurpExtension {
             collaboratorPoller.shutdown();
             api.logging().logToOutput("Extension unloading...");
         });
+
+        String numberOfPayloads = getNumberOfPayloads();
+
+        generatePayloads(collaboratorClient, Integer.parseInt(numberOfPayloads));
+
+        collaboratorPoller.start();
     }
 
     private CollaboratorClient createCollaboratorClient(PersistedObject persistedData) {
